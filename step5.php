@@ -10,30 +10,52 @@
     //var_dump($_SESSION);
 	if( isset( $_GET['value'] ) ) {
        // $uid = selectFromTable("uid", " t_register ", " 0  "  , $db);
-       
-       $testid = $_SESSION['testid'];
-       echo $value = $_GET['value'];
+   
+ 
 
-      // exit();
 
-       $A125Hz = "$value";
 
-    $sql = 'select * from t_register where uid = :testid';
-    
-		$result = $db->display( $sql, array(':testid' => $testid) );
-        
-		if( $result ) {
+$lor = $_SESSION['t_lor'];
+if( $lor  == 'l'){
+    $testid = $_SESSION['t_l_id']; 
+} else {
+    $testid = $_SESSION['t_r_id']; 
+}
 
-		$sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
+$A125Hz = $_GET['value'];
+
+$sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
 			$params = array(':125Hz'=>$A125Hz,':testid'=>$testid);
            // var_dump($params);
-            $result = $db->execute_query_return_id( $sql, $params );
+            $result = $db->execute_query( $sql, $params );
            // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
 			
             
-           header('Location: step5.php');
+        //    header('Location: step6.php');
 
-		}
+    //    $testid = $_SESSION['testid'];
+    //    echo $value = $_GET['value'];
+
+    //   // exit();
+
+    //    $A125Hz = "$value";
+
+    // $sql = 'select * from t_register where uid = :testid';
+    
+	// 	$result = $db->display( $sql, array(':testid' => $testid) );
+        
+	// 	if( $result ) {
+
+	// 	$sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
+	// 		$params = array(':125Hz'=>$A125Hz,':testid'=>$testid);
+    //        // var_dump($params);
+    //         $result = $db->execute_query_return_id( $sql, $params );
+    //        // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
+			
+            
+    //        header('Location: step5.php');
+
+	// 	}
     }
   
 ?>

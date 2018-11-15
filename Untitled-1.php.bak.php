@@ -1,5 +1,3 @@
-
-
 <?php 
 	
 	// connection
@@ -9,58 +7,117 @@
 	$message = "";
     //var_dump($_POST);
     session_start();
-    //var_dump($_SESSION);
-	if( isset( $_GET['value'] ) ) {
-       // $uid = selectFromTable("uid", " t_register ", " 0  "  , $db);
    
+    //var_dump($_SESSION); 
+	if( isset( $_POST['next'] ) ) {
+
+        // var_dump($_POST);
+       // $uid = selectFromTable("uid", " t_register ", " 0  "  , $db);
+     
+       $uid = $_SESSION['uid'];
+       $outbox = $_POST['outbox'];
+
+$go = true;
+if( isset($_SESSION['t_l_id']) ) {
+    if( ! is_null( $_SESSION['t_l_id'] ) ) {
+        $go = false; 
+    } 
+}
+
+if( $go ){
+
+    $sql = 'insert into t_test( uid, outbox ,date)values(:uid,:outbox ,:date)';
+			$params = array(':uid'=>$uid,':outbox'=>$outbox,':date'=> Date('Y-m-d'));
+             
+            $result = $db->execute_query_return_id( $sql, $params );
+            $_SESSION['t_l_id'] = $result;
+            $_SESSION['t_lor'] = 'l';
  
 
 
-
-$lor = $_SESSION['t_lor'];
-if( $lor  == 'l'){
-    $testid = $_SESSION['t_l_id']; 
 } else {
-    $testid = $_SESSION['t_r_id']; 
+
+
+    
+
+    $sql = 'update t_test set outbox=:outbox where testid=:testid';
+    $params = array(':outbox'=>  $outbox,':testid'=>  $_SESSION['t_l_id']); 
+    $result = $db->execute_query( $sql, $params );
+    
+
 }
 
-$A125Hz = $_GET['value'];
 
-$sql = 'update t_test set 8KHz=:value where testid=:testid';
-			$params = array(':value'=>$A125Hz,':testid'=>$testid);
-           // var_dump($params);
-            $result = $db->execute_query( $sql, $params );
-           // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
-			
-            
-        //    header('Location: step6.php');
 
-    //    $testid = $_SESSION['testid'];
-    //    echo $value = $_GET['value'];
+$go = true;
+if( isset($_SESSION['t_r_id']) ) {
+    if( ! is_null( $_SESSION['t_r_id'] ) ) {
+        $go = false; 
+    } 
+}
 
-    //   // exit();
+if( $go ){
 
-    //    $A125Hz = "$value";
+    $sql = 'insert into t_test( uid, outbox ,date)values(:uid,:outbox ,:date)';
+			$params = array(':uid'=>$uid,':outbox'=>$outbox,':date'=> Date('Y-m-d'));
+             
+            $result = $db->execute_query_return_id( $sql, $params );
+            $_SESSION['t_r_id'] = $result;
 
-    // $sql = 'select * from t_register where uid = :testid';
+
+}else {
+
+
     
-	// 	$result = $db->display( $sql, array(':testid' => $testid) );
-        
-	// 	if( $result ) {
 
-	// 	$sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
-	// 		$params = array(':125Hz'=>$A125Hz,':testid'=>$testid);
-    //        // var_dump($params);
-    //         $result = $db->execute_query_return_id( $sql, $params );
-    //        // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
+    $sql = 'update t_test set outbox=:outbox where testid=:testid';
+    $params = array(':outbox'=>  $outbox,':testid'=>  $_SESSION['t_r_id']); 
+    $result = $db->execute_query( $sql, $params );
+    
+
+}
+
+
+
+
+
+header('Location: step2.php');
+
+
+
+
+
+
+      
+    //    $testid = $_SESSION['testid'];
+      // var_dump($testid);
+
+
+// var_dump($db->display($stmnt,$params)[0]['testid']) ;
+
+
+//     $sql = 'select * from t_register where uid = :testid';
+    
+// 		$result = $db->display( $sql, array(':testid' => $uid) );
+        
+// 		if(! $result ) {
+// $date=Date('y-m-d');  echo"123";
+// 		$sql = 'insert into t_test( uid, outbox ,date)values(:uid,:outbox ,:date)';
+// 			$params = array(':uid'=>$uid,':outbox'=>$outbox,':date'=>$date);
+//             var_dump($params);
+//             $result = $db->execute_query_return_id( $sql, $params );
+//            // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
 			
             
-    //        header('Location: step5.php');
+//             header('Location: step2.php');
 
-	// 	}
+// 		}
     }
   
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -120,7 +177,8 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1></h1>
+                    <h1> Audiometry</h1>
+                <h5><i> Enjoy Listening Everyday</i></h5>
 
                      <div class="breadcrumbs">
                         <ul class="d-flex flex-wrap align-items-center p-0 m-0">
@@ -135,99 +193,63 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
             </div>
         </div>
 
-        
+        <!--img class="header-img" src="images/about-bg.png" alt=""-->
     </header><!-- .site-header -->
 
-    
-            <script>alert(values are Successful updated);</script>
-            <link href="style.css" rel="stylesheet" type="text/css" />
-
-                    <div class="container"> 
-                        <div class="row">
-                        <div class="col">
-                        
-                     
-                    
-<script type="text/javascript">
-google.load('visualization', '1.1', {packages: ['line']});
-google.setOnLoadCallback(drawChart);
-
-function drawChart() {
-
-var data = new google.visualization.DataTable();
-data.addColumn('number', 'Frequency(Hz)');
-data.addColumn('number', 'intensity');
-data.addRows([
-[8000,  10],
-[4000,  10],
-[2000,  0],
-[1000,  10],
-[500,   10],
-[250,   10],
-[125,   10]
-[0, 0]
-]);
-
-var options = {
-chart: {
-title: 'HEARING ASSESSMENT',
-subtitle: 'Audiogram'
-},
-width: 900,
-height: 500,
-axes: {
-x: {
-0: {side: 'top'}
-}
-
-}
-};
-
-var chart = new google.charts.Line(document.getElementById('line_top_x'));
-
-chart.draw(data, options);
-}
-</script>
-
-                    
-            	<form name="form1" action="step11.php" method="post">
-                <table width="585" height="298" border="1">
-                <tr><h1>PTA Average</h1>
+    <!--div class="med-history">
         
-		</tr>
-       	  				
-									</table>
-									</form>
-                               
+            <div class="row align-items-end"-->
+            <script>alert(values are Successful updated);</script>
+                    <div class="container" >
 
 
-                                
 
-                                <tr>
-		<td height ="50" colspan="2">RightPTA Average:</td>
-		</tr>
-		
-        </div>
-        </div>
-	             
-                           
+
+
+                    <div class="row">
+    
+    
+    
+ 
+
+
+
+
+
+                         <!--h1> Select Your Outbox</h1-->
+                         <div class="col">
+                         <div text="left">
+                         <form name="form1" action="" method="post">
+                <table width="585" height="166">
+					<tr>
+       	  				<td width="597" height="50"><div class="btitle">SELECT YOUR OUTBOX</div></td>
+               	  	</tr>
+                    <tr>
+                   	  <td height="53"><input type="radio" name="outbox" value="Speaker" required  /> Speaker</td>
+                  </tr>
+                    <tr>
+                   	  <td height="52"><input type="radio" name="outbox" value="Headphone" required /> Headphone</td>
+                  </tr>
+                  <tr>
+                   	  <td height="52"><input type="submit" name="next" value="NEXT >>" class="button gradient-bg"/> </td>
+										</tr>
+	              </table>
+	              </form>
+                  </div>
+
+                            </div>
                             <div class="col">
-                            <table width="385" height="100" >
-                            <td height ="50" colspan="2" >
-                            <tr>
                                  <div >INSTRUCTIONS
-                                     
-                                 
-												 <tr><td>  <font color="red">MILD HEARING LOSS:</font><font color="black"> 20 to 30 dB</font></td> </tr>
-												 <tr><td> <font color="red"> MODERATE  LOSS:</font> <font color="black">30 to 55 dB</font> </td></tr>
-												 <tr><td><font color="red">SEVERE HEARING LOSS: </font><font color="black">70 to 90 dB </font></td></tr>
-                                                    <tr><td><font color="red">PROFOUND LOSS:</font> <font color="black">90 dB </font></td></tr>
-                                </tr></td>
-                                
-                                 </div>
-</table>
+                                     <ul>
+                                     <li>Adjust the Full volume to where you can hear comfortably.</li>
+                                     <li>Select head set for more accurate values</li>
+                                     <li>Please complete all steps</li>
+                                     <li>Please don’t adjust it again during this screening.</li>
+                                     <li> Click play. Then adjust the volume to where you can hear comfortably.</li>
+                                     </ul>
+ </div></div>
+ </div>
                         </div>
-</div>
                     <!--h2>MedArt History</h2>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. </p>

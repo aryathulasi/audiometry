@@ -6,22 +6,22 @@ $error = "";
 //var_dump($_POST);
 session_start();
 
-//echo "123";
-//print_r($_POST);
-/*if( isset( $_POST['submit'] ) ) {
-    $email = $_POST['email'];
-	$password = $_POST['password'];
-    //print_r($_POST);*/
+var_dump($_SESSION);
    
-  $stmnt='select * from t_register where uid = :uid';
- 
+  $stmnt='select * from t_register where uid = :uid ';
+  
   $params=array( 
-   ':uid'  =>   $_SESSION['uid']
+   ':uid'  =>   $_SESSION['uid'],
+  
  );
+ var_dump($db->display($stmnt,$params));
 
-$data = $db->display($stmnt,$params);
+ $_SESSION['testid']=  $db->display($stmnt,$params)[0]['testid'];
+ echo  $db->display($stmnt,$params)[0]['testid'];
+ // var_dump( $db->display($stmnt,$params));
+ echo"123";
 
-    $_SESSION['testid']=  $db->display($stmnt,$params)[0]['testid'];
+$data = $db->display($stmnt,$params);   
      
 
 if(isset($data[0])){

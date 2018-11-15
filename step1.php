@@ -10,31 +10,199 @@
     
     //var_dump($_SESSION);
 	if( isset( $_POST['next'] ) ) {
+
+
+        
+
+
+
+
+
+
+
+        
+
+        // var_dump($_POST);
        // $uid = selectFromTable("uid", " t_register ", " 0  "  , $db);
-       $testid = $_SESSION['testid'];
+     
        $uid = $_SESSION['uid'];
-       $outbox = $_POST['outbox'];
-        
-    $sql = 'select * from t_register where uid = :testid';
-    
-		$result = $db->display( $sql, array(':testid' => $testid) );
-        
-		if( $result ) {
-$date=Date('y-m-d');
-		$sql = 'insert into t_test( uid, outbox ,date)values(:uid,:outbox ,:date)';
-			$params = array(':uid'=>$uid,':outbox'=>$outbox,':date'=>$date);
-           // var_dump($params);
+       $ear = $_POST['ear'];
+
+
+
+
+       $testid = 0;
+
+       if( $_POST['ear'] == strtolower("left")) {
+         
+
+
+echo " helo ";
+
+           $go = true;
+if( isset($_SESSION['t_l_id']) ) {
+    if( ! is_null( $_SESSION['t_l_id'] ) ) {
+        $go = false; 
+    } 
+}
+
+if( $go ){
+
+    $sql = 'insert into t_test( uid, ear ,date)values(:uid,:ear ,:date)';
+			$params = array(':uid'=>$uid,':ear'=>$ear,':date'=> Date('Y-m-d'));
+             
             $result = $db->execute_query_return_id( $sql, $params );
-           // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
+            $_SESSION['t_l_id'] = $result;
+            $_SESSION['t_lor'] = 'l';
+ 
+
+
+} else {
+
+
+    
+
+    $sql = 'update t_test set ear=:ear where testid=:testid';
+    $params = array(':ear'=>  $ear,':testid'=>  $_SESSION['t_l_id']); 
+    $result = $db->execute_query( $sql, $params );
+    
+
+}
+
+
+
+
+$testid = $_SESSION['t_l_id']; 
+$_SESSION['t_lor'] = 'l';
+
+
+       } else {
+          
+
+
+
+           
+$go = true;
+if( isset($_SESSION['t_r_id']) ) {
+    if( ! is_null( $_SESSION['t_r_id'] ) ) {
+        $go = false; 
+    } 
+}
+
+if( $go ){
+
+    $sql = 'insert into t_test( uid, ear ,date)values(:uid,:ear ,:date)';
+			$params = array(':uid'=>$uid,':ear'=>$ear,':date'=> Date('Y-m-d'));
+             
+            $result = $db->execute_query_return_id( $sql, $params );
+            $_SESSION['t_r_id'] = $result;
+
+
+}else {
+
+
+    
+
+    $sql = 'update t_test set ear=:ear where testid=:testid';
+    $params = array(':ear'=>  $ear,':testid'=>  $_SESSION['t_r_id']); 
+    $result = $db->execute_query( $sql, $params );
+    
+
+}
+
+
+$testid = $_SESSION['t_r_id']; 
+$_SESSION['t_lor'] = 'r';
+
+       }
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+        // $testid = 0;
+
+        // if( $_POST['ear'] == strtolower("left")) {
+        //     $testid = $_SESSION['t_l_id']; 
+        //     $_SESSION['t_lor'] = 'l';
+        // } else {
+        //     $testid = $_SESSION['t_r_id']; 
+        //     $_SESSION['t_lor'] = 'r';
+        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    //     $sql = 'update t_test set ear=:ear where testid=:testid';
+    //     $params = array(':ear'=>$_POST['ear'],':testid'=>$testid);
+    //    // var_dump($params);
+    //     $result = $db->execute_query( $sql, $params );
+    //    // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
+        
+
+
+
+        
+
+
+
+       // $uid = selectFromTable("uid", " t_register ", " 0  "  , $db);
+       
+// var_dump($_POST);
+//        exit();
+//        $testid = $_SESSION['testid'];
+//        $ear = $_POST['ear'];
+        
+//     $sql = 'select * from t_register where uid = :testid';
+    
+// 		$result = $db->display( $sql, array(':testid' => $testid) );
+        
+// 		if( !$result ) {
+
+// 		$sql = 'update t_test set ear=:ear where testid=:testid';
+// 			$params = array(':ear'=>$ear,':testid'=>$testid);
+//            // var_dump($params);
+//             $result = $db->execute_query_return_id( $sql, $params );
+//            // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
 			
             
-            header('Location: step2.php');
-
-		}
+        //    header('Location: step2.php');
+ 
     }
   
 ?>
-
 
 
 
@@ -96,9 +264,8 @@ $date=Date('y-m-d');
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1> Audiometry</h1>
+                <h1> Audiometry</h1>
                 <h5><i> Enjoy Listening Everyday</i></h5>
-
                      <div class="breadcrumbs">
                         <ul class="d-flex flex-wrap align-items-center p-0 m-0">
                         <a class="button gradient-bg" href="about_hearing.html">About Hearing</a>
@@ -119,44 +286,29 @@ $date=Date('y-m-d');
         
             <div class="row align-items-end"-->
             <script>alert(values are Successful updated);</script>
-                    <div class="container" >
-
-
-
-
-
-                    <div class="row">
-    
-    
-    
- 
-
-
-
-
-
-                         <!--h1> Select Your Outbox</h1-->
+                    <div class="container">
+                         <!--h1> Choose Ear</h1-->
+                         <div class="row">
                          <div class="col">
                          <div text="left">
                          <form name="form1" action="" method="post">
                 <table width="585" height="166">
 					<tr>
-       	  				<td width="597" height="50"><div class="btitle">SELECT YOUR OUTBOX</div></td>
+       	  				<h1><b><td width="597" height="50"><div class="btitle">CHOOSE EAR</div></td></b></h1>
                	  	</tr>
                     <tr>
-                   	  <td height="53"><input type="radio" name="outbox" value="Speaker" required  /> Speaker</td>
+                   	  <td height="53"><input type="radio" name="ear" value="Left" required  /> Left</td>
                   </tr>
                     <tr>
-                   	  <td height="52"><input type="radio" name="outbox" value="Headphone" required /> Headphone</td>
+                   	  <td height="52"><input type="radio" name="ear" value="Right" required /> Right</td>
                   </tr>
                   <tr>
                    	  <td height="52"><input type="submit" name="next" value="NEXT >>" class="button gradient-bg"/> </td>
 										</tr>
 	              </table>
 	              </form>
-                  </div>
 
-                            </div>
+                            </div></div>
                             <div class="col">
                                  <div >INSTRUCTIONS
                                      <ul>
@@ -166,9 +318,9 @@ $date=Date('y-m-d');
                                      <li>Please don’t adjust it again during this screening.</li>
                                      <li> Click play. Then adjust the volume to where you can hear comfortably.</li>
                                      </ul>
- </div></div>
  </div>
-                        </div>
+</div>
+</div>   </div>
                     <!--h2>MedArt History</h2>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. </p>

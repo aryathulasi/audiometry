@@ -10,27 +10,52 @@
     
     //var_dump($_SESSION);
 	if( isset( $_POST['next'] ) ) {
+        $testid = 0;
+
+        if( $_POST['ear'] == strtolower("left")) {
+            $testid = $_SESSION['t_l_id']; 
+            $_SESSION['t_lor'] = 'l';
+        } else {
+            $testid = $_SESSION['t_r_id']; 
+            $_SESSION['t_lor'] = 'r';
+        }
+
+
+        $sql = 'update t_test set ear=:ear where testid=:testid';
+        $params = array(':ear'=>$_POST['ear'],':testid'=>$testid);
+       // var_dump($params);
+        $result = $db->execute_query( $sql, $params );
+       // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
+        
+
+
+
+        
+
+
+
        // $uid = selectFromTable("uid", " t_register ", " 0  "  , $db);
        
-       $testid = $_SESSION['testid'];
-       $ear = $_POST['ear'];
+// var_dump($_POST);
+//        exit();
+//        $testid = $_SESSION['testid'];
+//        $ear = $_POST['ear'];
         
-    $sql = 'select * from t_register where uid = :testid';
+//     $sql = 'select * from t_register where uid = :testid';
     
-		$result = $db->display( $sql, array(':testid' => $testid) );
+// 		$result = $db->display( $sql, array(':testid' => $testid) );
         
-		if( $result ) {
+// 		if( !$result ) {
 
-		$sql = 'update t_test set ear=:ear where testid=:testid';
-			$params = array(':ear'=>$ear,':testid'=>$testid);
-           // var_dump($params);
-            $result = $db->execute_query_return_id( $sql, $params );
-           // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
+// 		$sql = 'update t_test set ear=:ear where testid=:testid';
+// 			$params = array(':ear'=>$ear,':testid'=>$testid);
+//            // var_dump($params);
+//             $result = $db->execute_query_return_id( $sql, $params );
+//            // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
 			
             
            header('Location: step3.php');
-
-		}
+ 
     }
   
 ?>

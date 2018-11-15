@@ -27,6 +27,8 @@ if( isset( $_POST['submit'] ) ) {
   if($db->display($stmnt,$params)){
     //echo "123";
    $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
+
+   var_dump($db->display($stmnt,$params));
   // $_SESSION['type']='admin';
    header('Location: profile.php');
    exit();
