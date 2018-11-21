@@ -204,7 +204,25 @@ chart.draw(data, options);
                                 
 
                                 <tr>
-		<td height ="50" colspan="2">RightPTA Average:</td>
+		<td height ="50" colspan="2">RightPTA Average:
+        <?php 
+            include_once( 'connection.php' );
+
+            $db = new Database();
+            $message = "";
+            //var_dump($_POST);
+           // session_start();
+
+            
+            $query='select * from t_test where testid=:testid and uid=:uid';
+            $params=array(":testid" => $_SESSION['testid']);
+            $result= $db-> display($query,$params);
+             //var_dump($result);
+             var_dump($_SESSION);
+            
+        
+        ?>
+        </td>
 		</tr>
 		
         </div>

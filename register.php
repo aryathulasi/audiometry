@@ -23,8 +23,8 @@
 
 		if( !$result ) {
 
-		$sql = 'insert into t_register( name, dob, gender,address, city, state, email, password )values(:name ,:dob, :gender, :address, :city, :state, :email,  :password )';
-			$params = array(':name'=>$name,':dob'=>$dob,':gender'=>$gender, ':address'=>$address, ':city'=>$city,':state'=>$state,':email'	=>	$email,':password'	=>	$password);
+		$sql = 'insert into t_register( name, dob, gender,address, city, state)values(:name ,:dob, :gender, :address, :city, :state )';
+			$params = array(':name'=>$name,':dob'=>$dob,':gender'=>$gender, ':address'=>$address, ':city'=>$city,':state'=>$state);
             
             $result = $db->execute_query_return_id( $sql, $params );
             

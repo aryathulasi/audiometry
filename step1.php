@@ -5,10 +5,12 @@
 
 	$db = new Database();
 	$message = "";
-    //var_dump($_POST);
+    // var_dump($_POST);
+
+    // echo "<br><br>";
     session_start();
-    
-    //var_dump($_SESSION);
+    echo"123";
+    // var_dump($_SESSION);
 	if( isset( $_POST['next'] ) ) {
 
 
@@ -33,12 +35,9 @@
 
        $testid = 0;
 
-       if( $_POST['ear'] == strtolower("left")) {
+       if( strtolower($_POST['ear']) == "left") {
          
-
-
-echo " helo ";
-
+ 
            $go = true;
 if( isset($_SESSION['t_l_id']) ) {
     if( ! is_null( $_SESSION['t_l_id'] ) ) {
@@ -77,7 +76,7 @@ $_SESSION['t_lor'] = 'l';
 
 
        } else {
-          
+          echo "sgttr";
 
 
 
@@ -198,7 +197,7 @@ $_SESSION['t_lor'] = 'r';
 //            // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
 			
             
-        //    header('Location: step2.php');
+           header('Location: step2.php');
  
     }
   

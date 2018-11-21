@@ -6,7 +6,7 @@ $error = "";
 //var_dump($_POST);
 session_start();
 
-var_dump($_SESSION);
+//var_dump($_SESSION);
    
   $stmnt='select * from t_register where uid = :uid ';
   
@@ -14,12 +14,12 @@ var_dump($_SESSION);
    ':uid'  =>   $_SESSION['uid'],
   
  );
- var_dump($db->display($stmnt,$params));
+ //var_dump($db->display($stmnt,$params));
 
- $_SESSION['testid']=  $db->display($stmnt,$params)[0]['testid'];
- echo  $db->display($stmnt,$params)[0]['testid'];
- // var_dump( $db->display($stmnt,$params));
- echo"123";
+ //$_SESSION['testid']=  $db->display($stmnt,$params)[0]['testid'];
+// echo  $db->display($stmnt,$params)[0]['testid'];
+ //var_dump( $db->display($stmnt,$params));
+ //echo"123";
 
 $data = $db->display($stmnt,$params);   
      
@@ -129,7 +129,7 @@ if(isset($data[0])){
                                         
                                     <ul>
                                         <li><a href="editprofile.php">EDIT PROFILE</a></li>
-                                        <li><a href="edit_password.php">CHANGE PASSWORD</a></li>
+                                        <li><a href="changepassword.php">CHANGE PASSWORD</a></li>
                                        
                                         <li><a href="step1.php">TAKE TEST</a></li>
                        
@@ -148,36 +148,36 @@ if(isset($data[0])){
                                     <form name="form1" method="post" action="" >
                                  
                                     <table width="610" height="536" style="text-align:left;" cellpadding="0" cellspacing="0">
-                                         <tr>
-                                            <td width="135">Name:<?php echo $data['name'];?></td>
-                                            <td width=  "253"></td>
+                                         <center><tr>
+                                            <td width="135">Name<?php echo $data['name'];?></td>
+                                            <td width=  "253">:</td>
                                            </tr>
                                             <tr>
-                                            <td>Dob:<?php echo $data['dob'];?></td>
-                                            <td width="10"></td>
+                                            <td>Dob<?php echo $data['dob'];?></td>
+                                            <td width="10">:</td>
                                             </tr>
                                              <tr>
-                                            <td>Gender:<?php echo $data['gender'];?></td>
-                                            <td></td>
+                                            <td>Gender<?php echo $data['gender'];?></td>
+                                            <td>:</td>
                                              </tr>
                                              <tr>
-                                            <td>Address:<?php echo $data['address'];?></td>
-                                            <td></td>
+                                            <td>Address<?php echo $data['address'];?></td>
+                                            <td>:</td>
                                         </tr>
                 
                                         <tr>
-                                            <td>City:<?php echo $data['city'];?></td>
-                                            <td></td>
+                                            <td>City<?php echo $data['city'];?></td>
+                                            <td>:</td>
                                         </tr>
                                         <tr>
-                                            <td>State:<?php echo $data['state'];?></td>
-                                            <td></td>
+                                            <td>State<?php echo $data['state'];?></td>
+                                            <td>:</td>
                                         </tr>
                                         <tr>
-                                            <td>Email:<?php echo $data['email'];?></td>
-                                            <td></td>
+                                            <td>Email<?php echo $data['email'];?></td>
+                                            <td>:</td>
                                         </tr>
-                                        
+                                        </center>
                                          </table>
                                          </form>
                                      </div>

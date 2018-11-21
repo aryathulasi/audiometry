@@ -1,82 +1,52 @@
-<?php 
-	
-	// connection
-	include_once( 'connection.php' );
 
-	$db = new Database();
-	$message = "";
-    //var_dump($_POST);
-    session_start();                          
-	/*if( isset( $_POST['submit'] ) ) {
-        
-		$name = $_POST['name'];
-		$dob = $_POST['dob'];
-        $gender = $_POST['gender'];
-        $address=$_POST['address'];
-        $city = $_POST['city'];
-        $state = $_POST['state'];
-       // $email = $_POST['email'];
-        //$password = md5($_POST['password']);*/
-        echo"123";
-        $stmnt='select * from t_register where uid = :uid ';
-  
-        $params=array( 
-         ':uid'  =>   $_SESSION['uid'],
-        
-       );
-       //var_dump($db->display($stmnt,$params));
-      
-      // $_SESSION['testid']=  $db->display($stmnt,$params)[0]['testid'];
-     // echo  $db->display($stmnt,$params)[0]['testid'];
-       // var_dump( $db->display($stmnt,$params));
-       //echo"123";
-      
-      $data = $db->display($stmnt,$params);   
-           
-      
-      if(isset($data[0])){
-          $data = $data[0];
-      }
+<?php
+include_once( 'connection.php' );
+
+$db = new Database();
+$error = "";
+//var_dump($_POST);
+session_start();
 
 
-       // echo  $db->display($sql,$result)[0]['uid'];
-		if( $data ) {
+//print_r($_POST);
+if( isset( $_POST['submit'] ) ) {
 
-		$sql = 'update t_register set name=:name, dob=:dob, gender=:gender,address=:address, city=:city, state=:city where uid=:uid';
-			//$params = array(':name'=>$name,':dob'=>$dob,':gender'=>$gender, ':address'=>$address, ':city'=>$city,':state'=>$state,':email'	=>	$email,':password'	=>	$password);
-            
-            $data = $db->execute_query_return_id( $stmnt);
-            
-			if( !$data ) {
-               
-                $message = "User update successfull!";
-                
-			} else {
-				$message = "Someting went wrong";
-            }
-          
 
-            /*$sql = 'insert into t_login( uid, email, password ) values( :uid, :email,  :password )';
-			
-            $params=array(':uid' => $result, ':email'=>$email,':password'=>$password);
-			
-            $result = $db->execute_query( $sql, $params );
+    
+    $email = $_POST['email'];
+	$password = $_POST['password'];
+    //print_r($_POST);
+   
+  $stmnt='select * from t_login where email = :email and password = :password';
+ 
+  $params=array( 
+   ':email'  =>  $email,
+   ':password'  =>  md5($password)
+ ); 
 
-			if( $result ) {
-                $message = "User registration successfull!";
-			} else {
-				$message = "Someting went wrong";
-            }
-            
-*/
 
-		} else {
-			$message = "Username not available";
-		}
-        
-   // }
-  
+// var_dump($db->display($stmnt,$params));
+// echo"123";
+
+ if($db->display($stmnt,$params)){
+   // echo "123";
+   //$_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
+   $sql = 'update t_login set password=:password where email=:email';
+   $params = array(':password'=> $password,':email'=> $email); 
+  // var_dump($params);
+   $result = $db->execute_query( $sql, $params );
+   echo"$result";
+  // var_dump($db->display($stmnt,$params));
+  // $_SESSION['type']='admin';
+   //header('Location: profile.php');
+   exit();
+ }else{
+   $error= 'Incorrect username or password';
+ }
+}
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -105,9 +75,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
-                    
                         <div class="site-branding d-flex align-items-center">
-                        
                             <a class="d-block" href="index.php" rel="home"><img class="d-block" src="images/logo.png" alt="logo"></a>
                         </div><!-- .site-branding -->
 
@@ -122,7 +90,7 @@
                                
                             </ul>
                         </nav><!-- .site-navigation -->
-
+                        
                         <div class="hamburger-menu d-lg-none">
                             <span></span>
                             <span></span>
@@ -135,11 +103,13 @@
         </div><!-- .nav-bar -->
 
         <div class="container">
+        <h1> Audiometry</h1>
+                <h5><i> Enjoy Listening Everyday</i></h5>
             <div class="row">
                 
                 <div class="col-12">
-                <h1> Audiometry</h1>
-                <h5><i> Enjoy Listening Everyday</i></h5>
+                   
+
                     <div class="breadcrumbs">
                         <ul class="d-flex flex-wrap align-items-center p-0 m-0">
                         <a class="button gradient-bg" href="about_hearing.html">About Hearing</a>
@@ -155,104 +125,46 @@
         <!--img class="header-img" src="images/service-bg.png" alt=""-->
     </header><!-- .site-header -->
 
-    <div class="quality-services">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2>Edit Profile</h2>
+    <div class="container " >
+            <div class="row-50" >
+                <div class="col-100 col-lg-20 " >
+                <center><h1>Change Password</h1>
+                    <form name="form1" method="post" action="" >
+                         <table height="186"  >
+       	                     <tr>
+                        	<td>EMAIL ID</td>
+                            <td>:<input type="email" name="email" value="" required /></td>
+                              </tr>
+                              <tr>
+                        	<td>PASSWORD</td>
+                            <td>:<input type="password" name="password" value="" required /></td>
+                                 </tr>
+                                 <tr>
+                        	<td>CONFIRM NEW PASSWORD</td>
+                            <td>:<input type="password" name="password" value="" required /></td>
+                                 </tr>
+											
+                      <tr>
+                         
+                      <td><input type="submit" name="submit" value="submit" class="button gradient-bg" />
+
+                                            
+                                            </tr>
+                                                    
+				              </table>
+                    </form>
+                </center>
+                </div>
+            </div>
+    </div>
+                    <!--h2>Only Top Quality Services</h2>
 
                     <div class="row">
-                        <div class="col-5 col-md-3">
+                        <div class="col-12 col-md-6">
                             </div>
 
-                        <div class="col-5 col-md-6">
-                        <form name="myForm" action="#" method="post">
-                	<div id="Info"></div><table height="536">
-<tbody><tr>
-                        	<td>Name</td>
-                            <td><input type="text" name="name" id="name"  required><div id="Info"></div></td>
-                        </tr>
-                        
-                        <tr>
-                        	<td>D-o-b</td>
-
-                            <td><input type="date" name="dob" id="dob" size="35" width="500" required></td>
-                        </tr>
-                        <tr>
-                        	<td>Gender</td>
-                            <td><input type="radio" name="gender" value="Male" id="male" required><label for="male"> Male</label><input type="radio" name="gender" id="female" value="Female" required><label for="female"> Female</label></td>
-                        </tr>
-                        <tr>
-                        	<td>Address</td>
-                            <td><input type="text" name="address" value="" id="address" onchange="address()" required></td>
-                        </tr>                
-
-                        <tr>
-                        	<td>City</td>
-                            <td><input type="text" name="city" value="" id="city" onchange="cityy()" required></td>
-                        </tr>
-                        <tr>
-                        	<td>State</td>
-                        <td><div><select name="state" class="form-control" required="">
-                              <option value="">Select</option>
-                              <option value="Andra Pradesh">Andra Pradesh</option>
-                              <option value="Arunachal Pradesht">Arunachal Pradesh</option>
-                              <option value="Assam">Assam</option>
-                              <option value="Bihar">Bihar</option>
-                              <option value="Chhattisgarh">Chhattisgarh</option>
-                              <option value="Goa">Goa</option>
-
-                              <option value="Gujarat">Gujarat</option>
-                              <option value="Haryana">Haryana</option>
-                              <option value="Himachal Pradesh">Himachal Pradesh</option>
-                              <option value="Jharkhandr">Jharkhand</option>
-                              <option value="Karnataka">Karnataka</option>
-                              <option value="Kerala">Kerala</option>
-
-                              <option value="Madya Pradesh">Madya Pradesh</option>
-                              <option value="Maharashtra">Maharashtra</option>
-                              <option value="Manipur">Manipur</option>
-                              <option value="Meghalaya">Meghalaya</option>
-                              <option value="Mizoram">Mizoram</option>
-                              <option value="Nagaland">Nagaland</option>
-
-                              <option value="Orissa">Orissa</option>
-                              <option value="Punjab">Punjab</option>
-                              <option value="Rajasthan">Rajasthan</option>
-                              <option value="Sikkim">Sikkim</option>
-                              <option value="Tamil Nadu">Tamil Nadu</option>
-                              <option value="Tripura">Tripura</option>
-
-                              <option value="Uttaranchal">Uttaranchal</option>
-                              <option value="Uttar Pradesh">Uttar Pradesh</option>
-                              <option value="West Bengal">West Bengal</option>
-
-                              </select>
-                              </div>
-                              </td>
-                        </tr>
-                       <!--tr>
-                          <td>Email</td>
-                            <td><input type="text" name="email" id="email" onchange="efn()" required></td>
-                                    
-                        </tr>
-
-                        <tr>
-                        	<td>Password</td>
-                            <td> <input type="password" name="password" id="password" required></td>
-                        </tr>
-                        <tr>
-                        	<td>Confirm Password</td>
-                            <td><input type="password" id="confirm_password" required onkeyup="return check();"><div id="Info1"></div></td>
-                        </tr-->
-                       
-                        <tr>
-                        	<td></td>
-                            <td><input type="submit" name="submit" value="submit" class="button gradient-bg"></td>
-                        </tr><td> <?php echo "<div class='alert alert-primary' role='alert'>$message</div>"?></td>
-                    </tbody></table>
-              </form>
-                          
+                        <div class="col-12 col-md-6">
+                            <p>Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo.</p>
                         </div>
                     </div>
 
@@ -262,15 +174,44 @@
                 </div>
             </div>
         </div>
-    </div-->
+    </div>
 
-    <!--div class="container">
+    <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-22">
                 <div class="our-departments-wrap">
                     <h2>Our Departments</h2>
+                        <div class="row">
+                            <div class="col-5 col-md-3">
+                                </div>
+    
+                            <div class="col-5 col-md-6">
+               <div class="page_content" id="login">
+              <form name="form1" method="post" action="#">
+                <table height="186">
+       	  <tr>
+                        	<td>EMAIL ID</td>
+                            <td><input type="email" name="email" value="" required /></td>
+                  </tr>
+                        <tr>
+                        	<td>PASSWORD</td>
+                            <td><input type="password" name="password" value="" required /></td>
+                        </tr>
+												
+                      <tr>
+                      <td><input type="submit" name="submit" value="submit" class="button gradient-bg" />
+                      <script type="text/javascript">
+    document.getElementById("submit").onclick = function () {
+        location.href = "personal.php";
+    };
+</script>
 
-                    <div class="row">
+													</tr>
+                              </table>
+                              </form>
+                            </div>
+                            </div>
+                                    <!----div class="row">
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="our-departments-cont">
                                 <header class="entry-header d-flex flex-wrap align-items-center">
@@ -526,7 +467,7 @@
 
                             <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Privacy policy <!--i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+ Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                         </div><!-- .foot-about -->
                     </div><!-- .col -->
 
@@ -540,7 +481,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <li><span>Email:</span>yourmail@gmail.com</li>
                             </ul>
                         </div>
-                    </div><!-- .col -->
+                    </div> .col -->
 
                     <div class="col-15 col-md-8 col-lg-20 mt-8 mt-md-5">
                         <div class="foot-links">

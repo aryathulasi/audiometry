@@ -183,7 +183,7 @@ $sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
                               	<source src="audio250/audiocheck.net_puretone_250_0.mp3" type="audio/mpeg">
                         	</audio>
                    	</td>
-                   	<td width="264" height="51"><input type="radio" name="outbox" value="" required  onclick="window.location='step6.php?value=0'" id="0"/><label for="0"> Yes</label></td>
+                   	<td width="264" height="51"><input type="radio" name="outbox" value="10" required  onclick="window.location='step6.php?value=10'" id="0"/><label for="0"> Yes</label></td>
                   </tr>
                   <tr>
                   	   	<td width="43">10</td>
@@ -192,7 +192,7 @@ $sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
                               	<source src="audio250/audiocheck.net_puretone_250_10.mp3" type="audio/mpeg">
                         	</audio>
                       	</td>
-                   	<td width="264" height="51"><input type="radio" name="outbox" value="" required onclick="window.location='step6.php?value=10'" id="1" /><label for="1"> Yes</label></td>
+                   	<td width="264" height="51"><input type="radio" name="outbox" value="20" required onclick="window.location='step6.php?value=20'" id="1" /><label for="1"> Yes</label></td>
                   </tr>
                   <tr>
                   	   	<td width="43">20</td>
@@ -201,7 +201,7 @@ $sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
                               	<source src="audio250/audiocheck.net_puretone_250_20.mp3" type="audio/mpeg">
                         	</audio>
                       	</td>
-                   		<td width="264" height="55"><input type="radio" name="outbox" value="" required onclick="window.location='step6.php?value=20'" id="2" /><label for="2"> Yes</label></td>
+                   		<td width="264" height="55"><input type="radio" name="outbox" value="30" required onclick="window.location='step6.php?value=30'" id="2" /><label for="2"> Yes</label></td>
                   </tr>
                   <tr>
                   	   	<td width="43">30</td>
@@ -210,7 +210,7 @@ $sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
                               	<source src="audio250/audiocheck.net_puretone_250_30.mp3" type="audio/mpeg">
                         	</audio>
                       	</td>
-                   		<td width="264" height="55"><input type="radio" name="outbox" value="" required  onclick="window.location='step6.php?value=30'" id="3" /><label for="3"> Yes</label></td>
+                   		<td width="264" height="55"><input type="radio" name="outbox" value="40" required  onclick="window.location='step6.php?value=40'" id="3" /><label for="3"> Yes</label></td>
                   </tr>
                   <tr>
                   	   	<td width="43">40</td>
@@ -219,7 +219,7 @@ $sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
                               	<source src="audio250/audiocheck.net_puretone_250_40.mp3" type="audio/mpeg">
                         	</audio>
                       	</td>
-                   		<td width="264" height="55"><input type="radio" name="outbox" value="" required   onclick="window.location='step6.php?value=40'" id="4"/><label for="4"> Yes</label></td>
+                   		<td width="264" height="55"><input type="radio" name="outbox" value="50" required   onclick="window.location='step6.php?value=50'" id="4"/><label for="4"> Yes</label></td>
                   </tr>
                   <tr>
                   	   	<td width="43">50</td>
@@ -228,7 +228,7 @@ $sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
                               	<source src="audio250/audiocheck.net_puretone_250_50.mp3" type="audio/mpeg">
                         	</audio>
                       	</td>
-                   		<td width="264" height="55"><input type="radio" name="outbox" value="" required  onclick="window.location='step6.php?value=50'"  id="5"/><label for="5"> Yes</label></td>
+                   		<td width="264" height="55"><input type="radio" name="outbox" value="60" required  onclick="window.location='step6.php?value=60'"  id="5"/><label for="5"> Yes</label></td>
                   </tr>
                   <tr>
                   	   	<td width="43">60</td>
@@ -237,7 +237,7 @@ $sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
                               	<source src="audio250/audiocheck.net_puretone_250_60.mp3" type="audio/mpeg">
                         	</audio>
                       	</td>
-                   		<td width="264" height="55"><input type="radio" name="outbox" value="" required   onclick="window.location='step6.php?value=60'" id="6"/><label for="6"> Yes</label></td>
+                   		<td width="264" height="55"><input type="radio" name="outbox" value="70" required   onclick="window.location='step6.php?value=70'" id="6"/><label for="6"> Yes</label></td>
                   </tr>
                   <tr>
                   	   	<td width="43">70</td>
@@ -246,13 +246,13 @@ $sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
                               	<source src="audio250/audiocheck.net_puretone_250_70.mp3" type="audio/mpeg">
                         	</audio>
                       	</td>
-                   		<td width="264" height="55"><input type="radio" name="outbox" value="" required   onclick="window.location='step6.php?value=70'" id="7"/><label for="7"> Yes</label></td>
+                   		<td width="264" height="55"><input type="radio" name="outbox" value="80" required   onclick="window.location='step6.php?value=80'" id="7"/><label for="7"> Yes</label></td>
                   </tr>
                   <tr>
                   	   	<td width="43"></td>
        	      			<td width="262" height="55">
                       	</td>
-                   		<td width="264" height="55"><input type="radio" name="outbox" value="" required  onclick="window.location='step6.php?value=80'" id="9" /><label for="8"> No</td>
+                   		<td width="264" height="55"><input type="radio" name="outbox" value="0" required  onclick="window.location='step6.php?value=00'" id="9" /><label for="8"> No</td>
 											</tr>
 									</table>
 									</form>
