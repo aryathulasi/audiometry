@@ -1,38 +1,38 @@
 
 
 <?php 
-	
+
 	// connection
-	include_once( 'connection.php' );
+include_once( 'connection.php' );
 
-	$db = new Database();
-	$message = "";
+$db = new Database();
+$message = "";
     //var_dump($_POST);
-    session_start();
+session_start();
     //var_dump($_SESSION);
-	if( isset( $_GET['value'] ) ) {
+if( isset( $_GET['value'] ) ) {
        // $uid = selectFromTable("uid", " t_register ", " 0  "  , $db);
-   
- 
 
 
 
-$lor = $_SESSION['t_lor'];
-if( $lor  == 'l'){
-    $testid = $_SESSION['t_l_id']; 
-} else {
-    $testid = $_SESSION['t_r_id']; 
-}
 
-$A125Hz = $_GET['value'];
 
-$sql = 'update t_test set 8KHz=:value where testid=:testid';
-			$params = array(':value'=>$A125Hz,':testid'=>$testid);
+    $lor = $_SESSION['t_lor'];
+    if( $lor  == 'l'){
+        $testid = $_SESSION['t_l_id']; 
+    } else {
+        $testid = $_SESSION['t_r_id']; 
+    }
+
+    $A125Hz = $_GET['value'];
+
+    $sql = 'update t_test set 8KHz=:value where testid=:testid';
+    $params = array(':value'=>$A125Hz,':testid'=>$testid);
            // var_dump($params);
-            $result = $db->execute_query( $sql, $params );
+    $result = $db->execute_query( $sql, $params );
            // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
-			
-            
+
+
         //    header('Location: step6.php');
 
     //    $testid = $_SESSION['testid'];
@@ -45,7 +45,7 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
     // $sql = 'select * from t_register where uid = :testid';
     
 	// 	$result = $db->display( $sql, array(':testid' => $testid) );
-        
+
 	// 	if( $result ) {
 
 	// 	$sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
@@ -53,13 +53,13 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
     //        // var_dump($params);
     //         $result = $db->execute_query_return_id( $sql, $params );
     //        // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
-			
-            
+
+
     //        header('Location: step5.php');
 
 	// 	}
-    }
-  
+}
+
 ?>
 
 
@@ -120,15 +120,15 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                <h1> Audiometry</h1>
-                <h5><i> Enjoy Listening Everyday</i></h5>
+                    <h1> Audiometry</h1>
+                    <h5><i> Enjoy Listening Everyday</i></h5>
 
-                     <div class="breadcrumbs">
+                    <div class="breadcrumbs">
                         <ul class="d-flex flex-wrap align-items-center p-0 m-0">
-                        <a class="button gradient-bg" href="about_hearing.html">About Hearing</a>
-                        <a class="button gradient-bg" href="hearing loss.html">Hearing Loss</a>
-                        <a class="button gradient-bg" href="hearing_focus.html">Hearing Focus</a>
-                           
+                            <a class="button gradient-bg" href="about_hearing.html">About Hearing</a>
+                            <a class="button gradient-bg" href="hearing loss.html">Hearing Loss</a>
+                            <a class="button gradient-bg" href="hearing_focus.html">Hearing Focus</a>
+
                         </ul>
                     </div><!-- .breadcrumbs -->
 
@@ -140,86 +140,86 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
     </header><!-- .site-header -->
 
     
-            <script>alert(values are Successful updated);</script>
-            <link href="style.css" rel="stylesheet" type="text/css" />
+    <script>alert(values are Successful updated);</script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
 
-                    <div class="container"> 
-                        <div class="row">
-                        <div class="col">
-                        
-                     
-                    
-                                <script type="text/javascript">
-                                google.load('visualization', '1.1', {packages: ['line']});
-                                google.setOnLoadCallback(drawChart);
+    <div class="container"> 
+        <div class="row">
+            <div class="col">
 
-                                function drawChart() {
 
-                                var data = new google.visualization.DataTable();
-                                data.addColumn('number', 'Frequency(Hz)');
-                                data.addColumn('number', 'intensity');
-                                data.addRows([
-                                [8000,  10],
-                                [4000,  10],
-                                [2000,  0],
-                                [1000,  10],
-                                [500,   10],
-                                [250,   10],
-                                [125,   10]
-                                [0, 0]
-                                ]);
 
-                                var options = {
-                                chart: {
+                <script type="text/javascript">
+                    google.load('visualization', '1.1', {packages: ['line']});
+                    google.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('number', 'Frequency(Hz)');
+                        data.addColumn('number', 'intensity');
+                        data.addRows([
+                            [8000,  10],
+                            [4000,  10],
+                            [2000,  0],
+                            [1000,  10],
+                            [500,   10],
+                            [250,   10],
+                            [125,   10]
+                            [0, 0]
+                            ]);
+
+                        var options = {
+                            chart: {
                                 title: 'HEARING ASSESSMENT',
                                 subtitle: 'Audiogram'
-                                },
-                                width: 900,
-                                height: 500,
-                                axes: {
+                            },
+                            width: 900,
+                            height: 500,
+                            axes: {
                                 x: {
-                                0: {side: 'top'}
+                                    0: {side: 'top'}
                                 }
 
-                                }
-                                };
+                            }
+                        };
 
-                                var chart = new google.charts.Line(document.getElementById('line_top_x'));
+                        var chart = new google.charts.Line(document.getElementById('line_top_x'));
 
-                                chart.draw(data, options);
-                                }
-                                </script>
+                        chart.draw(data, options);
+                    }
+                </script>
 
-                    
-            	<form name="form1" action="step11.php" method="post">
-                <table width="585" height="298">
-                <tr><h1>PTA Average</h1>
-        
-		</tr>
-        <tr>
-		<td height ="50" colspan="2">RightPTA Average:
-        <?php 
-            include_once( 'connection.php' );
 
-            $db = new Database();
-            $message = "";
+                <form name="form1" action="step11.php" method="post">
+                    <table width="585" height="298">
+                        <tr><h1>PTA Average</h1>
+
+                        </tr>
+                        <tr>
+                          <td height ="50" colspan="2">RightPTA Average:
+                            <?php 
+                            include_once( 'connection.php' );
+
+                            $db = new Database();
+                            $message = "";
             //var_dump($_POST);
            // session_start();
 
            //if( isset( $_POST['next'] ) ) {
-            $uid = $_SESSION['uid'];
+                            $uid = $_SESSION['uid'];
 
 
 
-            $query='select * from t_test where testid=:testid and uid=:uid';
-            if( isset($_SESSION['t_l_id']) ) {
-            $params=array(":testid" => $_SESSION['t_l_id']);
-            }
-            else
-            {
-                $params=array(":testid" => $_SESSION['t_r_id']); 
-            }
-            $result= $db-> display($query,$params);
+                            // $query='select * from t_test where testid=:testid and uid=:uid';
+                            if( isset($_SESSION['t_l_id']) ) {
+                                $params=array(":testid" => $_SESSION['t_l_id']);
+                            }
+                            else
+                            {
+                                $params=array(":testid" => $_SESSION['t_r_id']); 
+                            }
+                            // $result= $db-> display($query,$params);
 
 
 
@@ -235,53 +235,66 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
             
                         //var_dump($result);
                         // var_dump($_SESSION);*/
-                       $total='SELECT `testid`, `uid`, `date`, `outbox`, `ear`,( `125Hz`+ `250Hz`+ `500Hz`+ `1KHz`+ `2KHz`+ `4KHz`+ `8KHz`) as sum FROM `t_test` where testid=:testid'
+            $total='SELECT `testid`, `uid`, `date`, `outbox`, `ear`,( `125Hz`+ `250Hz`+ `500Hz`+ `1KHz`+ `2KHz`+ `4KHz`+ `8KHz`)/7 as sum FROM `t_test` where testid=:testid';
+            // $total='SELECT * FROM `t_test` where testid=:testid';
+
+            $rResult = $db->display($total, $params);
+
+            $avg = 0;
+            // var_dump( $rResult );
+            if(isset($rResult[0]['sum'])){
+
+                $avg =  $rResult[0]['sum'];
+                $avg = round($avg , 2);
+            }
+
+            echo $avg;
                       // $sql = 'insert into t_pta( uid,total ) values( :uid, :total )';
-			
+
                        //$params=array(':uid' => $uid, ':total'=>$total,);
 
-                       
+
                        //$result= $db->execute_query( $sql,$params );
                    // $result= $db-> display($sum);
-                      var_dump($total); 
+
 
                      // header('Location: step12.php');
-        
+
       //      }
-        ?>
+            ?>
         </td>
-		</tr>
-        <tr>
-                   	  <td height="52"><input type="submit" name="next" value="NEXT >>" class="button gradient-bg" /> </td>
-										</tr>
-									</table>
-									</form>
-                               
-
-
-                                
-
-                              
-        </div>
-        <!--/div-->
-	             
-                           
-                            <div class="col">
-                            <table width="385" height="100" >
-                            <td height ="50" colspan="2" >
-                            <tr>
-                                 <div >INSTRUCTIONS
-                                     
-                                 
-												 <tr><td>  <font color="red">MILD HEARING LOSS:</font><font color="black"> 20 to 30 dB</font></td> </tr>
-												 <tr><td> <font color="red"> MODERATE  LOSS:</font> <font color="black">30 to 55 dB</font> </td></tr>
-												 <tr><td><font color="red">SEVERE HEARING LOSS: </font><font color="black">70 to 90 dB </font></td></tr>
-                                                    <tr><td><font color="red">PROFOUND LOSS:</font> <font color="black">90 dB </font></td></tr>
-                                </tr></td>
-                                
-                                 </div>
+    </tr>
+    <tr>
+      <td height="52"><input type="submit" name="next" value="NEXT >>" class="button gradient-bg" /> </td>
+  </tr>
 </table>
-                        </div>
+</form>
+
+
+
+
+
+
+</div>
+<!--/div-->
+
+
+<div class="col">
+    <table width="385" height="100" >
+        <td height ="50" colspan="2" >
+            <tr>
+             <div >INSTRUCTIONS
+
+
+                 <tr><td>  <font color="red">MILD HEARING LOSS:</font><font color="black"> 20 to 30 dB</font></td> </tr>
+                 <tr><td> <font color="red"> MODERATE  LOSS:</font> <font color="black">30 to 55 dB</font> </td></tr>
+                 <tr><td><font color="red">SEVERE HEARING LOSS: </font><font color="black">70 to 90 dB </font></td></tr>
+                 <tr><td><font color="red">PROFOUND LOSS:</font> <font color="black">90 dB </font></td></tr>
+             </tr></td>
+
+         </div>
+     </table>
+ </div>
 </div>
                     <!--h2>MedArt History</h2>
 
@@ -424,14 +437,14 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
 
                             <!--p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p>
 
-                            <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved| Privacy policy  <!--i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a-->
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                        </div><!-- .foot-about -->
-                    </div><!-- .col -->
+                                <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved| Privacy policy  <!--i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a-->
+                                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                                    </div><!-- .foot-about -->
+                                </div><!-- .col -->
 
-                    <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
-                        <div class="foot-contact">
+                                <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
+                                    <div class="foot-contact">
                             <!--h2>Contact</h2>
 
                             <ul class="p-0 m-0">
@@ -442,7 +455,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         </div>
                     </div><!-- .col -->
 
-                     <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
+                    <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
                         <div class="foot-links">
                             <h2>Usefull Links</h2>
 
@@ -451,8 +464,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <li><a href="about_hearing.html">ABOUT HEARING</a></li>
                                 <li><a href="about.html">ABOUT US</a></li>
                                 <li><a href="hearing_loss.php">HEARING LOSS</a></li>
-                               
-                               
+
+
                                 
                                 
                             </ul>
