@@ -5,11 +5,11 @@
 
 	$db = new Database();
 	$message = "";
-    // var_dump($_POST);
+     //var_dump($_POST);
 
     // echo "<br><br>";
     session_start();
-    echo"123";
+    
     // var_dump($_SESSION);
 	if( isset( $_POST['next'] ) ) {
 

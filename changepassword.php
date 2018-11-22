@@ -13,14 +13,14 @@ if( isset( $_POST['submit'] ) ) {
 
 
     
-    $email = $_POST['email'];
+   // $email = $_POST['email'];
 	$password = $_POST['password'];
     //print_r($_POST);
    
   $stmnt='select * from t_login where email = :email and password = :password';
  
   $params=array( 
-   ':email'  =>  $email,
+   //':email'  =>  $email,
    ':password'  =>  md5($password)
  ); 
 
@@ -32,7 +32,7 @@ if( isset( $_POST['submit'] ) ) {
    // echo "123";
    //$_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
    $sql = 'update t_login set password=:password where email=:email';
-   $params = array(':password'=> $password,':email'=> $email); 
+   $params = array(':password'=> $password); 
   // var_dump($params);
    $result = $db->execute_query( $sql, $params );
    echo"$result";
@@ -131,10 +131,7 @@ if( isset( $_POST['submit'] ) ) {
                 <center><h1>Change Password</h1>
                     <form name="form1" method="post" action="" >
                          <table height="186"  >
-       	                     <tr>
-                        	<td>EMAIL ID</td>
-                            <td>:<input type="email" name="email" value="" required /></td>
-                              </tr>
+       	                     
                               <tr>
                         	<td>PASSWORD</td>
                             <td>:<input type="password" name="password" value="" required /></td>

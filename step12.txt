@@ -1,68 +1,3 @@
-
-
-<?php 
-	
-	// connection
-	include_once( 'connection.php' );
-
-	$db = new Database();
-	$message = "";
-    //var_dump($_POST);
-    session_start();
-    //var_dump($_SESSION);
-	if( isset( $_GET['value'] ) ) {
-       // $uid = selectFromTable("uid", " t_register ", " 0  "  , $db);
-   
- 
-
-
-
-$lor = $_SESSION['t_lor'];
-if( $lor  == 'l'){
-    $testid = $_SESSION['t_l_id']; 
-} else {
-    $testid = $_SESSION['t_r_id']; 
-}
-
-$A125Hz = $_GET['value'];
-
-$sql = 'update t_test set 8KHz=:value where testid=:testid';
-			$params = array(':value'=>$A125Hz,':testid'=>$testid);
-           // var_dump($params);
-            $result = $db->execute_query( $sql, $params );
-           // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
-			
-            
-        //    header('Location: step6.php');
-
-    //    $testid = $_SESSION['testid'];
-    //    echo $value = $_GET['value'];
-
-    //   // exit();
-
-    //    $A125Hz = "$value";
-
-    // $sql = 'select * from t_register where uid = :testid';
-    
-	// 	$result = $db->display( $sql, array(':testid' => $testid) );
-        
-	// 	if( $result ) {
-
-	// 	$sql = 'update t_test set 125Hz=:125Hz where testid=:testid';
-	// 		$params = array(':125Hz'=>$A125Hz,':testid'=>$testid);
-    //        // var_dump($params);
-    //         $result = $db->execute_query_return_id( $sql, $params );
-    //        // $_SESSION['uid']=  $db->display($stmnt,$params)[0]['uid'];
-			
-            
-    //        header('Location: step5.php');
-
-	// 	}
-    }
-  
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,7 +57,6 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
                 <div class="col-12">
                 <h1> Audiometry</h1>
                 <h5><i> Enjoy Listening Everyday</i></h5>
-
                      <div class="breadcrumbs">
                         <ul class="d-flex flex-wrap align-items-center p-0 m-0">
                         <a class="button gradient-bg" href="about_hearing.html">About Hearing</a>
@@ -136,153 +70,48 @@ $sql = 'update t_test set 8KHz=:value where testid=:testid';
             </div>
         </div>
 
-        
+        <!--img class="header-img" src="images/about-bg.png" alt=""-->
     </header><!-- .site-header -->
 
-    
+    <!--div class="med-history">
+        
+            <div class="row align-items-end"-->
             <script>alert(values are Successful updated);</script>
-            <link href="style.css" rel="stylesheet" type="text/css" />
-
-                    <div class="container"> 
-                        <div class="row">
-                        <div class="col">
-                        
-                     
-                    
-                                <script type="text/javascript">
-                                google.load('visualization', '1.1', {packages: ['line']});
-                                google.setOnLoadCallback(drawChart);
-
-                                function drawChart() {
-
-                                var data = new google.visualization.DataTable();
-                                data.addColumn('number', 'Frequency(Hz)');
-                                data.addColumn('number', 'intensity');
-                                data.addRows([
-                                [8000,  10],
-                                [4000,  10],
-                                [2000,  0],
-                                [1000,  10],
-                                [500,   10],
-                                [250,   10],
-                                [125,   10]
-                                [0, 0]
-                                ]);
-
-                                var options = {
-                                chart: {
-                                title: 'HEARING ASSESSMENT',
-                                subtitle: 'Audiogram'
-                                },
-                                width: 900,
-                                height: 500,
-                                axes: {
-                                x: {
-                                0: {side: 'top'}
-                                }
-
-                                }
-                                };
-
-                                var chart = new google.charts.Line(document.getElementById('line_top_x'));
-
-                                chart.draw(data, options);
-                                }
-                                </script>
-
-                    
-            	<form name="form1" action="step11.php" method="post">
-                <table width="585" height="298">
-                <tr><h1>PTA Average</h1>
-        
-		</tr>
-        <tr>
-		<td height ="50" colspan="2">RightPTA Average:
-        <?php 
-            include_once( 'connection.php' );
-
-            $db = new Database();
-            $message = "";
-            //var_dump($_POST);
-           // session_start();
-
-           //if( isset( $_POST['next'] ) ) {
-            $uid = $_SESSION['uid'];
-
-
-
-            $query='select * from t_test where testid=:testid and uid=:uid';
-            if( isset($_SESSION['t_l_id']) ) {
-            $params=array(":testid" => $_SESSION['t_l_id']);
-            }
-            else
-            {
-                $params=array(":testid" => $_SESSION['t_r_id']); 
-            }
-            $result= $db-> display($query,$params);
-
-
-
-//echo"123";
-
-            /*$sum='SELECT testid, 
-            SUM (125Hz + 250Hz) 
-            FROM t_test';
-            
-           
-            $summ = $db->execute_query( $sum );
-           
-            
-                        //var_dump($result);
-                        // var_dump($_SESSION);*/
-                       $total='SELECT `testid`, `uid`, `date`, `outbox`, `ear`,( `125Hz`+ `250Hz`+ `500Hz`+ `1KHz`+ `2KHz`+ `4KHz`+ `8KHz`) as sum FROM `t_test` where testid=:testid'
-                      // $sql = 'insert into t_pta( uid,total ) values( :uid, :total )';
-			
-                       //$params=array(':uid' => $uid, ':total'=>$total,);
-
-                       
-                       //$result= $db->execute_query( $sql,$params );
-                   // $result= $db-> display($sum);
-                      var_dump($total); 
-
-                     // header('Location: step12.php');
-        
-      //      }
-        ?>
-        </td>
-		</tr>
-        <tr>
-                   	  <td height="52"><input type="submit" name="next" value="NEXT >>" class="button gradient-bg" /> </td>
+                    <div class="container">
+                         <!--h1> Choose Ear</h1-->
+                         <div class="row">
+                         <div class="col">
+                         <div text="left">
+                         <form name="form1" action="" method="post">
+                <table width="585" height="166">
+					<tr>
+       	  				<h1><b><td width="597" height="50"><div class="btitle">CHOOSE EAR</div></td></b></h1>
+               	  	</tr>
+                    <tr>
+                   	  <td height="53"><input type="radio" name="ear" value="Left" required  /> Left</td>
+                  </tr>
+                    <tr>
+                   	  <td height="52"><input type="radio" name="ear" value="Right" required /> Right</td>
+                  </tr>
+                  <tr>
+                   	  <td height="52"><input type="submit" name="next" value="NEXT >>" class="button gradient-bg"/> </td>
 										</tr>
-									</table>
-									</form>
-                               
+	              </table>
+	              </form>
 
-
-                                
-
-                              
-        </div>
-        <!--/div-->
-	             
-                           
+                            </div></div>
                             <div class="col">
-                            <table width="385" height="100" >
-                            <td height ="50" colspan="2" >
-                            <tr>
                                  <div >INSTRUCTIONS
-                                     
-                                 
-												 <tr><td>  <font color="red">MILD HEARING LOSS:</font><font color="black"> 20 to 30 dB</font></td> </tr>
-												 <tr><td> <font color="red"> MODERATE  LOSS:</font> <font color="black">30 to 55 dB</font> </td></tr>
-												 <tr><td><font color="red">SEVERE HEARING LOSS: </font><font color="black">70 to 90 dB </font></td></tr>
-                                                    <tr><td><font color="red">PROFOUND LOSS:</font> <font color="black">90 dB </font></td></tr>
-                                </tr></td>
-                                
-                                 </div>
-</table>
-                        </div>
+                                     <ul>
+                                     <li>Adjust the Full volume to where you can hear comfortably.</li>
+                                     <li>Select head set for more accurate values</li>
+                                     <li>Please complete all steps</li>
+                                     <li>Please don’t adjust it again during this screening.</li>
+                                     <li> Click play. Then adjust the volume to where you can hear comfortably.</li>
+                                     </ul>
+ </div>
 </div>
+</div>   </div>
                     <!--h2>MedArt History</h2>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat. </p>

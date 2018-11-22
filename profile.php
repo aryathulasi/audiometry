@@ -128,7 +128,7 @@ if(isset($data[0])){
                                     <center>      
                                         
                                     <ul>
-                                        <li><a href="editprofile.php">EDIT PROFILE</a></li>
+                                        <!--li><a href="editprofile.php">EDIT PROFILE</a></li-->
                                         <li><a href="changepassword.php">CHANGE PASSWORD</a></li>
                                        
                                         <li><a href="step1.php">TAKE TEST</a></li>
@@ -149,34 +149,31 @@ if(isset($data[0])){
                                  
                                     <table width="610" height="536" style="text-align:left;" cellpadding="0" cellspacing="0">
                                          <center><tr>
-                                            <td width="135">Name<?php echo $data['name'];?></td>
-                                            <td width=  "253">:</td>
+                                            <td width="135">Name</td>
+                                            <td width=  "500">:<?php echo $data['name'];?></td>
                                            </tr>
                                             <tr>
-                                            <td>Dob<?php echo $data['dob'];?></td>
-                                            <td width="10">:</td>
+                                            <td>Dob</td>
+                                            <td width="10">:<?php echo $data['dob'];?></td>
                                             </tr>
                                              <tr>
-                                            <td>Gender<?php echo $data['gender'];?></td>
-                                            <td>:</td>
+                                            <td>Gender</td>
+                                            <td>:<?php echo $data['gender'];?></td>
                                              </tr>
                                              <tr>
-                                            <td>Address<?php echo $data['address'];?></td>
-                                            <td>:</td>
+                                            <td>Address</td>
+                                            <td>:<?php echo $data['address'];?></td>
                                         </tr>
                 
                                         <tr>
-                                            <td>City<?php echo $data['city'];?></td>
-                                            <td>:</td>
+                                            <td>City</td>
+                                            <td>:<?php echo $data['city'];?></td>
                                         </tr>
                                         <tr>
-                                            <td>State<?php echo $data['state'];?></td>
-                                            <td>:</td>
+                                            <td>State</td>
+                                            <td>:<?php echo $data['state'];?></td>
                                         </tr>
-                                        <tr>
-                                            <td>Email<?php echo $data['email'];?></td>
-                                            <td>:</td>
-                                        </tr>
+                                       
                                         </center>
                                          </table>
                                          </form>
