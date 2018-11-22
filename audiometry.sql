@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2018 at 11:06 AM
+-- Generation Time: Nov 22, 2018 at 11:09 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -67,7 +67,15 @@ INSERT INTO `t_login` (`uid`, `email`, `password`) VALUES
 (18, 'd@d,f', '5ec91aac30eae62'),
 (19, 'a@w.k', 'a1d33d0dfec820b'),
 (20, 'fara@gmail.com', 'a67d56672f2b5fb'),
-(21, 'junu@gmail.com', 'b145cadb8fd87a0e664b8f10cde496dc');
+(21, 'junu@gmail.com', 'junu1'),
+(23, 'arya@gmail.com', '5882985c8b1e2dce2763072d56a1d6e5'),
+(24, 'indran@gmail.com', '5109762146a1d8759da813ac222bc7e0'),
+(0, '', ''),
+(25, 'farah@gmail.com', 'be6b422eea913402a42740d294ece645'),
+(26, 'gee@gmail.com', '47de9de97f04843d5dad246beb6f8a83'),
+(27, 'diya@gmail.com', '436e97532fa8c80ca6e94a8435781b5a'),
+(28, 'raju@gmail.com', '03c017f682085142f3b60f56673e22dc'),
+(29, 'jassirlink@gmail.com', '202cb962ac59075b964b07152d234b70');
 
 -- --------------------------------------------------------
 
@@ -78,6 +86,7 @@ INSERT INTO `t_login` (`uid`, `email`, `password`) VALUES
 CREATE TABLE `t_pta` (
   `pid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
+  `total` int(20) NOT NULL,
   `pta` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -94,34 +103,39 @@ CREATE TABLE `t_register` (
   `gender` varchar(11) NOT NULL,
   `address` varchar(50) NOT NULL,
   `city` varchar(20) NOT NULL,
-  `state` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password` varchar(15) NOT NULL
+  `state` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_register`
 --
 
-INSERT INTO `t_register` (`uid`, `name`, `dob`, `gender`, `address`, `city`, `state`, `email`, `password`) VALUES
-(8, 'hima', '1996-03-01', 'Female', 'pala', 'pala', 'Kerala', 'hima@gmail.com', '514b0024591fa5b'),
-(7, 'hki', '2014-06-02', 'Male', 'f', 'g', 'Orissa', 'f@gmail.com', 'fd2cc6c54239c40'),
-(6, 'geetha', '2018-11-05', 'Female', 'tgn', 'ujn', 'Haryana', 'sdr@gmail.com', 'd8578edf8458ce0'),
-(5, 'arya', '2018-11-07', 'Female', 'fghj', 'hjkl', 'Manipur', 'ar@gmail.com', '9ed1c7f5119e63b'),
-(9, 'arta', '2018-11-06', 'Female', 'ghjk', 'tyu', 'Madya Pradesh', 'fg@j.jhk', 'eea3877c54230f9'),
-(10, 'fghj', '2018-11-08', 'Female', 'ghj', 'ghj', 'Karnataka', 'gg@jk.ggh', '2e65f2f2fdaf6c6'),
-(11, 'pl', '1996-08-05', 'Male', 'hj', 'j', 'Haryana', 'gg@hh.hh', '22c276a05aa7c90'),
-(12, 'fg', '1990-04-05', 'Male', 'jk', 'ewr', 'Goa', 'h@th.dfg', '4eae18cf9e54a0f'),
-(13, 'okm', '2010-05-05', 'Male', 'kk', 'jj', 'Jharkhandr', 'd@gmail.com', '1c1d4df596d01da'),
-(14, 'lk', '2000-04-05', 'Male', 'g', 'd', 'Haryana', 's@gg.ff', '7815696ecbf1c96'),
-(15, 'ok', '1999-09-08', 'Male', 'j', 'j', 'Nagaland', 'a@g.j', '76d80224611fc91'),
-(16, 'ijjnn', '1999-05-08', 'Male', 'g', 'h', 'Haryana', 'a@g.c', '2e65f2f2fdaf6c6'),
-(17, '123', '2018-11-01', 'Female', 'df', 'hh', 'Karnataka', 'ad@hh.ff', '2e65f2f2fdaf6c6'),
-(18, 'ff', '1999-08-05', 'Male', 'gg', 'aa', 'Goa', 'd@d,f', '5ec91aac30eae62'),
-(19, 'pl', '1999-06-07', 'Male', 'gg', 'as', 'Sikkim', 'a@w.k', 'a1d33d0dfec820b'),
-(20, 'fara', '1991-11-11', 'Female', 'p', 't', 'Haryana', 'fara@gmail.com', 'a67d56672f2b5fb'),
-(21, 'junu', '2001-02-05', 'Male', 'ju', 'nu', 'Kerala', 'junu@gmail.com', 'b145cadb8fd87a0'),
-(22, 'anju', '2018-11-30', 'Female', 'tvm', 'nedumangadu', 'Kerala', 'anju@gmail.com', '9abfae448bc00ea');
+INSERT INTO `t_register` (`uid`, `name`, `dob`, `gender`, `address`, `city`, `state`) VALUES
+(8, 'hima', '1996-03-01', 'Female', 'pala', 'pala', 'Kerala'),
+(7, 'hki', '2014-06-02', 'Male', 'f', 'g', 'Orissa'),
+(6, 'geetha', '2018-11-05', 'Female', 'tgn', 'ujn', 'Haryana'),
+(5, 'arya', '2018-11-07', 'Female', 'fghj', 'hjkl', 'Manipur'),
+(9, 'arta', '2018-11-06', 'Female', 'ghjk', 'tyu', 'Madya Pradesh'),
+(10, 'fghj', '2018-11-08', 'Female', 'ghj', 'ghj', 'Karnataka'),
+(11, 'pl', '1996-08-05', 'Male', 'hj', 'j', 'Haryana'),
+(12, 'fg', '1990-04-05', 'Male', 'jk', 'ewr', 'Goa'),
+(13, 'okm', '2010-05-05', 'Male', 'kk', 'jj', 'Jharkhandr'),
+(14, 'lk', '2000-04-05', 'Male', 'g', 'd', 'Haryana'),
+(15, 'ok', '1999-09-08', 'Male', 'j', 'j', 'Nagaland'),
+(16, 'ijjnn', '1999-05-08', 'Male', 'g', 'h', 'Haryana'),
+(17, '123', '2018-11-01', 'Female', 'df', 'hh', 'Karnataka'),
+(18, 'ff', '1999-08-05', 'Male', 'gg', 'aa', 'Goa'),
+(19, 'pl', '1999-06-07', 'Male', 'gg', 'as', 'Sikkim'),
+(20, 'fara', '1991-11-11', 'Female', 'p', 't', 'Haryana'),
+(21, 'junu', '2001-02-05', 'Male', 'ju', 'nu', 'Kerala'),
+(22, 'anju', '2018-11-30', 'Female', 'tvm', 'nedumangadu', 'Kerala'),
+(23, 'arya', '1995-07-31', 'Female', 'th', 'pta', 'Kerala'),
+(24, 'indran', '1995-09-05', 'Male', 'ko', 'kodumon', 'Kerala'),
+(25, 'fara', '1995-09-26', 'Female', 'ckdwjfkegj', 'calicut', 'Kerala'),
+(26, 'geetha', '2018-11-01', 'Female', 'hh', 'jj', 'Karnataka'),
+(27, 'diya', '2018-11-13', 'Female', 'ss', 'dd', 'Sikkim'),
+(28, 'RAJU', '2018-11-15', 'Male', 'KOLLAM', 'KOLLAM', 'Kerala'),
+(29, 'jassir', '2018-11-06', 'Male', 'kasjdksad', 'kollam', 'Kerala');
 
 -- --------------------------------------------------------
 
@@ -149,17 +163,13 @@ CREATE TABLE `t_test` (
 --
 
 INSERT INTO `t_test` (`testid`, `uid`, `date`, `outbox`, `ear`, `125Hz`, `250Hz`, `500Hz`, `1KHz`, `2KHz`, `4KHz`, `8KHz`) VALUES
-(31, 21, '2018-11-14', 'Speaker', '', '', '', '', '', '', '', ''),
-(29, 21, '2018-11-14', 'Speaker', '', '', '', '', '', '', '', ''),
-(21, 22, '2018-11-12', 'Speaker', 'Right', '40', '20', '30', '', '', '', ''),
-(22, 22, '2018-11-12', 'Speaker', 'Right', '40', '20', '30', '', '', '', ''),
-(23, 22, '2018-11-12', 'Speaker', 'Right', '40', '20', '30', '', '', '', ''),
-(24, 22, '2018-11-12', 'Headphone', 'Right', '40', '20', '30', '', '', '', ''),
-(25, 22, '2018-11-12', 'Headphone', 'Right', '40', '20', '30', '', '', '', ''),
-(30, 21, '2018-11-14', 'Speaker', '', '', '', '', '', '', '', ''),
-(26, 21, '2018-11-12', 'Speaker', 'Left', '0', '', '', '', '', '', ''),
-(27, 21, '2018-11-14', 'Speaker', 'Left', '0', '', '', '', '', '', ''),
-(28, 22, '2018-11-14', 'Headphone', 'Right', '40', '20', '30', '', '', '', '');
+(48, 28, '2018-11-22', 'Speaker', 'Right', '10', '20', '30', '40', '50', '60', '70'),
+(47, 28, '2018-11-21', 'Headphone', 'Right', '10', '20', '30', '40', '50', '60', '70'),
+(46, 22, '2018-11-21', 'Headphone', 'Left', '20', '30', '40', '50', '60', '30', '30'),
+(49, 24, '2018-11-22', 'Speaker', 'Left', '30', '30', '30', '40', '50', '20', '50'),
+(50, 28, '2018-11-22', 'Headphone', 'Right', '30', '20', '40', '20', '30', '40', '50'),
+(51, 22, '2018-11-22', 'Headphone', 'Left', '30', '50', '60', '70', '60', '', ''),
+(52, 22, '2018-11-22', 'Speaker', 'Left', '0', '00', '0', '80', '20', '30', '');
 
 --
 -- Indexes for dumped tables
@@ -217,13 +227,13 @@ ALTER TABLE `t_pta`
 -- AUTO_INCREMENT for table `t_register`
 --
 ALTER TABLE `t_register`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `t_test`
 --
 ALTER TABLE `t_test`
-  MODIFY `testid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `testid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
